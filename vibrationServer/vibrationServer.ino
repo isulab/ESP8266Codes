@@ -1,7 +1,7 @@
 #include <ESP8266WiFi.h>
 #include <ESP8266WebServer.h>
 #include <Ticker.h>
-
+#include "vibration.hpp"
 #define WIFI_SSID "7308"
 #define WIFI_PWD "mokemoke"
 
