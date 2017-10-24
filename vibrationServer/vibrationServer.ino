@@ -2,9 +2,9 @@
 #include <ESP8266WebServer.h>
 #include <Ticker.h>
 #include "vibration.hpp"
-#define WIFI_SSID "7308"
+#define WIFI_SSID "ugokuAP"
 #define WIFI_PWD "mokemoke"
-
+//ip addr 192.168.2.50
 ESP8266WebServer server(80);
 Ticker loop_ticker;
 Vibration v0(5),v1(12);
