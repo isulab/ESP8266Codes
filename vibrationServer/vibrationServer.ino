@@ -15,7 +15,7 @@ Vibration v0(5),v1(12);
   "</head><body>"
 #define HTML_FOOTER "</body></html>"
 void tiemr_interrupt(){
-  Serial.println("int");
+  //Serial.println("int");
   v0.update();
   v1.update();
 }
