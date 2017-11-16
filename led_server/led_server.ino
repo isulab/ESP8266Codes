@@ -3,7 +3,7 @@
 #include <ESP8266WebServer.h>
 #include <Ticker.h>
 #include "util.hpp"
-#define WIFI_SSID "7308"
+#define WIFI_SSID "Hasamaru AP"
 #define WIFI_PWD "mokemoke"
 
 enum LEDStateType{
@@ -114,7 +114,7 @@ void setup() {
   Serial.println("Connected!");
   Serial.print("IP Address: ");
   Serial.println(WiFi.localIP());
-   led = new  LED(2, 16);
+   led = new  LED(5, 32);
   // Setup WebServer Handlers
   server.on("/", [](){
     String html = String(HTML_HEADER) + "<form action=\"http://" + WiFi.localIP().toString() + "/led/0/all_on\" method=\"get\">\n" ;
