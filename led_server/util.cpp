@@ -37,8 +37,9 @@ void LED::set_color(int number,Color color){
 void LED::apply_now_led(){
   for(int i = 0; i < led_num; i ++){
     pixels.setPixelColor(i, pixels.Color(now_color[i].r, now_color[i].g, now_color[i].b));
-    pixels.show();
+    //pixels.show();
   }
+  pixels.show();
 }
 
 void LED::set_all_color(Color color){
@@ -87,12 +88,39 @@ void LED::shift_left(){
 }
 
 void LED::set_odd_color(Color color){
+  //Serial.println("set color");
+  //Serial.println(color.b);
+  //Serial.println((int)(((float)color.b) * 0.66));
   for(int i = 0; i < led_num; i++){
+    
     if(i % 4 == 0){
       now_color[i] = color;
     }else{
       now_color[i] = Color(0,0,0);
     }
+    
+    /*
+    switch (i % 4){
+      case 0:
+        now_color[i] = color;
+        break;
+      case 1:
+        //now_color[i] = Color((int)(((float)color.r) * 0.66), (int)(((float)color.g) * 0.66), (int)(((float)color.b) * 0.66));
+        now_color[i].r = (int)(((double)color.r) * 0.1);
+        now_color[i].g = (int)(((double)color.g) * 0.1);
+        now_color[i].b = (int)(((double)color.b) * 0.1);
+        break;
+      case 2:
+        //now_color[i] = Color((int)(((float)color.r) * 0.33), (int)(((float)color.g) * 0.33), (int)(((float)color.b) * 0.33));
+        now_color[i].r = (int)(((double)color.r) * 0.05);
+        now_color[i].g = (int)(((double)color.g) * 0.05);
+        now_color[i].b = (int)(((double)color.b) * 0.05);
+        break;
+      case 3:
+        now_color[i] = Color(0,0,0);
+        break;
+    }
+    */
   }
   apply_now_led();
 }
