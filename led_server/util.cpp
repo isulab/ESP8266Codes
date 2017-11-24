@@ -153,16 +153,16 @@ void LED::blink_smooth(){
   }else if(t*t >= max && up){
     up = false;
     //Serial.println("change up");
-  }else if(t > 0 && !up){
+  }else if(t > 2 && !up){
     set_all_color(blink_color * (constant * (t*t / max)));
     t -= 0.1;
     //Serial.print("d");
     //Serial.println(t*t);
-  }else if(t < 1 && !up){
+  }else if(t < 3 && !up){
     up = true;
     //Serial.println("change down");
   }else{
-    Serial.println("何かおかしい");
+    //Serial.println("何かおかしい");
   }
 }
 

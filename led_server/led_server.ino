@@ -70,7 +70,7 @@ void led_blink(Color color){
   LEDState = SM_BLINK;
   //led->set_all_color(color);
   led->blink_color = color;
-  timer_event_ticker.attach_ms(10,timer_call_back);
+  timer_event_ticker.attach_ms(20,timer_call_back);
 }
 void led_smooth_blink(Color color){
   LEDState = SM_BLINK;
