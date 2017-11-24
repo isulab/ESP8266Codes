@@ -21,6 +21,13 @@ public:
 	unsigned char b;
   Color(): r(0),g(0),b(0){};
   Color(unsigned char r,unsigned char g,unsigned char b):r(r),g(g),b(g){}
+  const Color operator*(const float& rhs){
+    Color tmp;
+    tmp.r = (int)((float)this->r * rhs);
+    tmp.g = (int)((float)this->g * rhs);
+    tmp.b = (int)((float)this->b * rhs);
+    return tmp;
+  }
 };
 
 /**
@@ -57,10 +64,12 @@ public:
 	//now_colorの奇数番目の色を指定する.
   //↑は間違い　いまは4こごとになった
 	void set_odd_color(Color color);
+  void gradually_blink();
   //すべてのLEDの色を(0,0,0)にする.set_all_color(Color(0,0,0))と同じ.
 	void all_off();
   //色情報を保持したまますべてのLEDの色について(0,0,0)と指定した色を呼び出すたびに交互に変更する
   void toggle();
+  void blink_smooth();
   Color* now_color;
   Color blink_color;
 };

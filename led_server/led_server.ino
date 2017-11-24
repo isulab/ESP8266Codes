@@ -7,7 +7,7 @@
 #define WIFI_PWD "mokemoke"
 
 enum LEDStateType{
-  OFF,ALL_ON,RIGHT,LEFT,BLINK
+  OFF,ALL_ON,RIGHT,LEFT,BLINK,SM_BLINK
 };
 ESP8266WebServer server(80);
 Ticker timer_event_ticker;
@@ -40,7 +40,9 @@ void timer_call_back(){
     case BLINK:
       led->toggle();
       break;
-      
+    case SM_BLINK:
+      led->blink_smooth();
+      break;
   }
 }
 void led_off(){
@@ -64,8 +66,14 @@ void led_left(Color color){
   timer_event_ticker.attach_ms(100,timer_call_back);
 }
 void led_blink(Color color){
-  LEDState = BLINK;
+  //LEDState = BLINK;
+  LEDState = SM_BLINK;
   //led->set_all_color(color);
+  led->blink_color = color;
+  timer_event_ticker.attach_ms(10,timer_call_back);
+}
+void led_smooth_blink(Color color){
+  LEDState = SM_BLINK;
   led->blink_color = color;
   timer_event_ticker.attach_ms(100,timer_call_back);
 }

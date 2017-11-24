@@ -140,3 +140,29 @@ void LED::toggle(){
   }
 }
 
+void LED::blink_smooth(){
+  static bool up = true;
+  float constant = 1.0;
+  static float t = 1.0;
+  float max = 100;
+  if(t*t < max && up){
+    set_all_color(blink_color * (constant * (t*t / max)));
+    t += 0.1;
+    //Serial.print("u");
+    //Serial.println(t*t);
+  }else if(t*t >= max && up){
+    up = false;
+    //Serial.println("change up");
+  }else if(t > 0 && !up){
+    set_all_color(blink_color * (constant * (t*t / max)));
+    t -= 0.1;
+    //Serial.print("d");
+    //Serial.println(t*t);
+  }else if(t < 1 && !up){
+    up = true;
+    //Serial.println("change down");
+  }else{
+    Serial.println("何かおかしい");
+  }
+}
+
